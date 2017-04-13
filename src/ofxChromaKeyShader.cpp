@@ -217,6 +217,15 @@ void ofxChromaKeyShader::updateBgColor(ofPixelsRef camPixRef){
 }
 
 //--------------------------------------------------------------
+void ofxChromaKeyShader::updateBgColor(ofPixelsRefConst camPixRef){
+    ofImage camImg(camPixRef);
+    camImg.crop(bgColorPos.get().x, bgColorPos.get().y, bgColorSize, bgColorSize);
+    Mat roiMat; roiMat = toCv(camImg);
+    cv::Scalar scalar = mean(roiMat);
+    bgColor = ofFloatColor(scalar[0]/255, scalar[1]/255, scalar[2]/255);
+}
+
+//--------------------------------------------------------------
 void ofxChromaKeyShader::updateChromakeyMask(const ofTexture& input_tex, const ofTexture& bg_tex){
     updateChromakeyMask(input_tex);
     

@@ -33,7 +33,9 @@ class ofxChromaKeyShader
 {
 public:
 	// ==================== Methods ====================
+    typedef const ofPixels& ofPixelsRefConst;
 
+    
 	ofxChromaKeyShader(int _width, int _height);
 	~ofxChromaKeyShader(void);
 
